@@ -4,23 +4,24 @@ function esMarcaSinVisitar(){
     proposito: devuelve verdadero si la celda no fue visitada anteriormente
     precondicion: -
      */
-    return (not esCeldaVisitada())
+    return (not esCeldaVisitada()) 
 }
 #endregion
 
 #region ejercicio2
 /*
-proposito: cuentadenota la cantidad de pasos que debe dar el robot hasta la siguiente marca
+proposito: cuentadenota la cantidad de pasos que debe dar el robot hasta la siguiente marca 
 precondicion: hay una marca sin visitar en direccion dir
 */
 function cantidadDePasosEntreMarcas(dir){
     cantidadPasos := 0;
-    while(puedeMover(dir) && not hayMarca()){
+    while(puedeMover(dir) && not hayMarca()){  
         cantidadPasos := cantidadPasos + 1;
         Mover(dir);
     }
     return (cantidadPasos)
 }
+
 #endregion
 
 #region ejercicio3
@@ -54,7 +55,8 @@ proposito: mueve el cabezal cantidad de pasos haya entre 2 marcas
 -precondicion: debe poder mover hacia la direccion
 */
 procedure AvanzarASiguienteMarca(dirMarca){
-    repeat(cantidadDePasosEntreMarcas(dirMarca)){
+    repeat(cantidadDePasosEntreMarcas(dirMarca)){ 
+                                                      
         Mover(dirMarca);
     }
 }
@@ -76,7 +78,7 @@ function escapeExitoso(energiaDisponible){
 }
 
 function direccionMarcaSinVisitarEnEntorno(energia){
-/*proposito: retorna la direccion hacia la cual hay marca sin visitar, siempre y cuando alcance la energia */
+/*proposito: retorna la direccion hacia la cual hay marca sin visitar */
     dir := mindDir();
     while (dir != maxDir() && not hayMarcaSinVisitarHacia(energia, dir)){
         dir := siguiente(dir);
@@ -84,6 +86,8 @@ function direccionMarcaSinVisitarEnEntorno(energia){
     return (dir)
 }
 #endregion
+
+
 
 #region ejercicio7
 procedure completarRecargas(){
@@ -98,30 +102,6 @@ precondicion: -
     }
 }
 
-procedure InicializarRecorrdio(dirPrincipal, dirSecundaria){
-    IrABorde(opuesto(dirPrincipal));
-    IrABorde(opuesto(dirSecundaria));
-}
- 
-function puedeMoverHacia(dirPrincipal, dirSecundaria){
-    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
-}
-
-procedure IrAProximaCelda(dirPrincipal, dirSecundaria){
-    if(puedeMover(dirPrincipal)){
-        Mover(dirPrincipal);
-    }
-    else{
-        Mover(dirSecundaria);
-        IrABorde(opuesto(dirPrincipal));
-    }
-}
-
-procedur IrABorde(dir){
-    while(puedeMover(dir)){
-        Mover(dir);
-    }
-}
 procedure colocarBaterias(){
     /*
     proposito: coloca una bateria alrededor de la celda actual, exactamente aun rango de 1 celda de distancia si la celda esta vacia.
@@ -137,7 +117,7 @@ procedure colocarBaterias(){
 
 procedure RetornarOrigen(dir){
     /*
-    proposito: mueve el cabezal dos posiciones en retorno a la celda de partida
+    proposito: mueve el cabezal dos posiciones en retorno al momento de partida
      */
     Mover(opuesto(siguente(dir)));
     Mover(opuesto(dir));
@@ -145,7 +125,7 @@ procedure RetornarOrigen(dir){
 
 procedure MoverAdyacente(dir){
     /*
-    proposito: pone el cabezal en celda diagonal a la celda de partida
+    proposito: pone el cabezal en celda diagonal al momento de partida
      */
     Mover(siguente(dir);)
 }
@@ -153,6 +133,9 @@ procedure MoverAdyacente(dir){
 procedure SiEsVaciaPonerBateria(){
     /*
     proposito: pone una bateria si la celda esta vacia
+
+//Prop: Pone "Baterias"en las celdas lindantes a la bateria
+//Prec: Debe existir la bateria. Debe haber al menos 1 bateria en direccion dir
      */
         if(esVacia()){
             Poner(Azul);
@@ -166,3 +149,6 @@ function esVacia(){
     return (not hayBolitas(Verde) && not hayBolitas(Rojo) && not hayBolitas(Negro) && not hayBolitas(Azul))
 }
 #endregion
+
+
+
